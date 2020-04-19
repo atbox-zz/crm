@@ -5,7 +5,8 @@ import lombok.Getter;
 public enum CodeMessage {
 
     SUCCESS("0000", "SUCCESS"),
-    FAIL("0001", "FAIL");
+    FAIL("0001", "FAIL"),
+    ERROR("9000", "ERROR");
 
     private CodeMessage(String code, String message) {
         this.code = code;
