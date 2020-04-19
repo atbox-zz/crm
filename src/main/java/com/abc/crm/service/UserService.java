@@ -1,6 +1,6 @@
 package com.abc.crm.service;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import com.abc.crm.dao.UserDao;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UserDetailsService {
+
+    private final UserDao userDao;
+
+    public UserService (UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     public String getCurrentUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -21,14 +27,12 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserDetails userDetails = User.builder()
-                .username("abc")
-                .password("{noop}123") // 密碼前面加上"{noop}"使用NoOpPasswordEncoder，也就是不對密碼進行任何格式的編碼。
-                .roles("USER")
-                .authorities(new SimpleGrantedAuthority("USER"))
-                .build();
-
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserDetails userDetails = userDao.getByUsername(username)
+                .map(e -> User.withUsername(e.getUsername())
+                .password("{noop}" + e.getPassword())
+                .roles(e.getRole())
+                .build()).orElse(null);
         return userDetails;
     }
 }
