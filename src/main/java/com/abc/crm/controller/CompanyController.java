@@ -43,8 +43,8 @@ public class CompanyController {
                 .orElse(ResOneDto.fail());
     }
 
-    @DeleteMapping("/delete")
-    public ResOneDto deleteOne(@RequestBody Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResOneDto deleteOne(@PathVariable Long id) {
         boolean success = companyService.deleteOne(id);
         if (success) {
             return ResOneDto.success();
