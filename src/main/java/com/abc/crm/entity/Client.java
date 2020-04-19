@@ -4,6 +4,7 @@ import com.abc.crm.service.bo.ClientBo;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @EqualsAndHashCode(callSuper = true)
@@ -16,6 +17,7 @@ public class Client extends BaseEntity {
 
     private Long companyId;
     private String name;
+    @Column(unique = true)
     private String email;
     private String phone;
 
