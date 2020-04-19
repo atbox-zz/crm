@@ -23,6 +23,12 @@ public class ClientDao {
                 .map(ClientBo::valueOf);
     }
 
+    public List<ClientBo> getByCompanyId(Long companyId) {
+        return clientRepo.findByCompanyId(companyId).stream()
+                .map(ClientBo::valueOf)
+                .collect(Collectors.toList());
+    }
+
     public Optional<Long> addOne(ClientBo clientBo) {
         Client client = Client.valueOf(clientBo);
         client = clientRepo.save(client);

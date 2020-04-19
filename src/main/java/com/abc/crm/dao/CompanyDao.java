@@ -16,6 +16,11 @@ public class CompanyDao {
         this.companyRepo = companyRepo;
     }
 
+    public Optional<CompanyBo> getOne(Long id) {
+        return companyRepo.findById(id)
+                .map(CompanyBo::valueOf);
+    }
+
 
     public Optional<Long> addOne(CompanyBo companyBo) {
         Company company = Company.valueOf(companyBo);
