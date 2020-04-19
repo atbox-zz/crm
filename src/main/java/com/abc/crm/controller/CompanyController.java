@@ -20,7 +20,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/view/{id}")
     public ResOneDto getOne(@PathVariable Long id) {
         return companyService.getOne(id)
                 .map(ResOneDto::success)

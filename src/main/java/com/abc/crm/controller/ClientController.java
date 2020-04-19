@@ -1,7 +1,7 @@
 package com.abc.crm.controller;
 
-import com.abc.crm.controller.dto.res.ResOneDto;
 import com.abc.crm.controller.dto.req.ClientReqDto;
+import com.abc.crm.controller.dto.res.ResOneDto;
 import com.abc.crm.service.ClientService;
 import com.abc.crm.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,9 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/view/{id}")
     public ResOneDto getOne(@PathVariable Long id) {
+        System.out.println(userService.getCurrentUsername());
         return clientService.getOne(id)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.empty());
