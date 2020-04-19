@@ -6,6 +6,8 @@ import com.abc.crm.service.ClientService;
 import com.abc.crm.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -22,7 +24,6 @@ public class ClientController {
 
     @GetMapping("/view/{id}")
     public ResOneDto getOne(@PathVariable Long id) {
-        System.out.println(userService.getCurrentUsername());
         return clientService.getOne(id)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.empty());
@@ -34,6 +35,13 @@ public class ClientController {
         return clientService.addOne(clientReqDto, username)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.fail());
+    }
+
+    @PostMapping("/add/many")
+    public ResOneDto addMany(@RequestBody List<ClientReqDto> clientReqDtoList) {
+        String username = userService.getCurrentUsername();
+        List<Long> idList = clientService.addMany(clientReqDtoList, username);
+        return ResOneDto.success(idList);
     }
 
     @PatchMapping("/update")

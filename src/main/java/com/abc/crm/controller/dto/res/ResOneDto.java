@@ -46,4 +46,11 @@ public class ResOneDto {
                 .build();
     }
 
+    public static ResOneDto error() {
+        return ResOneDto.builder()
+                .code(CodeMessage.ERROR.getCode())
+                .message(CodeMessage.ERROR.getMessage())
+                .build();
+    }
+
 }

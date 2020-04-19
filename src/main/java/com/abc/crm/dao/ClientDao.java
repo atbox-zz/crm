@@ -5,7 +5,9 @@ import com.abc.crm.entity.Client;
 import com.abc.crm.repo.ClientRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientDao {
@@ -25,6 +27,17 @@ public class ClientDao {
         Client client = Client.valueOf(clientBo);
         client = clientRepo.save(client);
         return Optional.ofNullable(client.getId());
+    }
+
+    public List<Long> addMany(List<ClientBo> clientBoList) {
+        List<Client> clientList = clientBoList.stream()
+                .map(Client::valueOf)
+                .collect(Collectors.toList());
+
+        clientList = clientRepo.saveAll(clientList);
+        return clientList.stream()
+                .map(Client::getId)
+                .collect(Collectors.toList());
     }
 
     public Optional<Long> updateOne(ClientBo clientBo) {
