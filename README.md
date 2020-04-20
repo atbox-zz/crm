@@ -36,6 +36,7 @@ http://localhost:8080/crm/swagger-ui.html
 - User `@ControllerAdvice` to deal all `Exceptoin` throwed, preventing internal error stack trace message send out.
 - Use Lombok to reduce boilerplate code, making development process easier, faster and more comfortable.
 - Use simple Class extends to reduce boilerplate code.
-- Unify API response style by well-defined object.
-- Well defined response message for success, fail, error.
+- Unify API response style by well-defined object. well-defined response message for success, fail, error.
+- Clean Code, meaningful naming, avoid duplicate code, fewer lines of the method, guard clause.
+- Well-managed and intuitive package design.
 
