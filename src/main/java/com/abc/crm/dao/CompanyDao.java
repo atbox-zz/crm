@@ -21,7 +21,6 @@ public class CompanyDao {
                 .map(CompanyBo::valueOf);
     }
 
-
     public Optional<Long> addOne(CompanyBo companyBo) {
         Company company = Company.valueOf(companyBo);
         company = companyRepo.save(company);
@@ -43,5 +42,9 @@ public class CompanyDao {
     public boolean deleteOne(Long id) {
         companyRepo.deleteById(id);
         return true;
+    }
+
+    public boolean isIdExist(Long id) {
+        return companyRepo.existsById(id);
     }
 }

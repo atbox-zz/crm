@@ -7,6 +7,7 @@ import com.abc.crm.controller.dto.res.ClientResDto;
 import com.abc.crm.dao.ClientDao;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -34,7 +35,7 @@ public class ClientService {
     }
 
     public Optional<Long> addOne(ClientReqDto clientReqDto, String username) {
-        if (!isCompanyIdExist(clientReqDto.getCompanyId())) {
+        if (isCompanyIdNotExist(clientReqDto.getCompanyId())) {
             log.debug("companyId={} doesn't exist", clientReqDto.getCompanyId());
             return Optional.empty();
         }
@@ -51,14 +52,15 @@ public class ClientService {
         return clientDao.addOne(clientBo);
     }
 
-    private boolean isCompanyIdExist(Long companyId) {
-        return companyDao.getOne(companyId).isPresent();
+    private boolean isCompanyIdNotExist(Long companyId) {
+        return !companyDao.isIdExist(companyId);
     }
 
+    @Transactional
     public List<Long> addMany(List<ClientReqDto> clientReqDtoList, String username) {
+
         Timestamp currentTimestamp = Timestamp.from(Instant.now());
         List<ClientBo> clientBoList = clientReqDtoList.stream()
-                .filter(e -> isCompanyIdExist(e.getCompanyId()))
                 .map(e -> ClientBo.builder()
                         .companyId(e.getCompanyId())
                         .name(e.getName())
@@ -72,7 +74,7 @@ public class ClientService {
     }
 
     public Optional<Long> updateOne(ClientReqDto clientReqDto, String username) {
-        if (!isCompanyIdExist(clientReqDto.getCompanyId())) {
+        if (isCompanyIdNotExist(clientReqDto.getCompanyId())) {
             log.debug("companyId={} doesn't exist", clientReqDto.getCompanyId());
             return Optional.empty();
         }
