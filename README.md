@@ -11,6 +11,9 @@ Simple CRM project
 - Swagger UI
 - Lombok
 - Log4j2
+- Git
+- IntelliJ IDEA
+- Postman
 
 ## Authentication/Authorizaiton
 ### Basic Auth
