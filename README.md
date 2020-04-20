@@ -29,14 +29,15 @@ http://localhost:8080/crm/swagger-ui.html
 
 ## Implementation explanation
 - Use Spring Boot framework to build backend REST API project. 
-- Use Spring Data JPA to build entity class to map table `Company` and `Client` for easy access. 
+- Use Spring Data JPA to map entity class to table `Company` and `Client` for easy accessing. 
 - Classic mainstream Controller -> Service -> Dao -> Repository multi-layer one-way structure pattern.
 - Use Java lambda syntax, builder pattern to make code more fluent style.
 - Use Spring Security to deal login and multi-role authorization feature. Use Basic Authentication due to time limit.
-- User `@ControllerAdvice` to deal all `Exceptoin` throwed, preventing internal error stack trace message send out.
+- Use `@ControllerAdvice` to deal all `Exceptoin` throwed, preventing internal error stack trace message send out.
 - Use Lombok to reduce boilerplate code, making development process easier, faster and more comfortable.
 - Use simple Class extends to reduce boilerplate code.
 - Unify API response style by well-defined object. well-defined response message for success, fail, error.
+- HTTP method POST, GET, PATCH, DELETE for CRUD API 
 - Clean Code, meaningful naming, avoid duplicate code, fewer lines of the method, guard clause.
 - Well-managed and intuitive package design.
 
