@@ -33,7 +33,7 @@ http://localhost:8080/crm/swagger-ui.html
 - Classic mainstream Controller -> Service -> Dao -> Repository multi-layer one-way structure pattern.
 - Use Java lambda syntax, builder pattern to make code more fluent style.
 - Use Spring Security to deal login and multi-role authorization feature. Use Basic Authentication due to time limit.
-- Use `@ControllerAdvice` to deal all `Exceptoin` throwed, preventing internal error stack trace message send out.
+- Use `@ControllerAdvice` to deal all `Exception` throwed, preventing internal error stack trace message send out.
 - Use Lombok to reduce boilerplate code, making development process easier, faster and more comfortable.
 - Use simple Class extends to reduce boilerplate code.
 - Unify API response style by well-defined object and response messages for success, fail, error.
