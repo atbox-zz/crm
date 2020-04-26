@@ -1,6 +1,7 @@
 package com.abc.crm.service;
 
 import com.abc.crm.dao.UserDao;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,13 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class UserService implements UserDetailsService {
 
     private final UserDao userDao;
-
-    public UserService (UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     public String getCurrentUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

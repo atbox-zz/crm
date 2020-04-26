@@ -5,6 +5,7 @@ import com.abc.crm.service.bo.ClientBo;
 import com.abc.crm.controller.dto.req.ClientReqDto;
 import com.abc.crm.controller.dto.res.ClientResDto;
 import com.abc.crm.dao.ClientDao;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,17 +18,11 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @Service
+@AllArgsConstructor
 public class ClientService {
 
     private final ClientDao clientDao;
     private final CompanyDao companyDao;
-
-    public ClientService(
-            ClientDao clientDao,
-            CompanyDao companyDao) {
-        this.clientDao = clientDao;
-        this.companyDao = companyDao;
-    }
 
     public Optional<ClientResDto> getOne(Long id) {
         return clientDao.getOne(id)
