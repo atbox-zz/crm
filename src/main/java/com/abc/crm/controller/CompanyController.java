@@ -4,21 +4,16 @@ import com.abc.crm.controller.dto.req.CompanyReqDto;
 import com.abc.crm.controller.dto.res.ResOneDto;
 import com.abc.crm.service.CompanyService;
 import com.abc.crm.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/company")
+@AllArgsConstructor
 public class CompanyController {
 
     private final UserService userService;
     private final CompanyService companyService;
-
-    public CompanyController(
-            UserService userService,
-            CompanyService companyService) {
-        this.userService = userService;
-        this.companyService = companyService;
-    }
 
     @GetMapping("/view/{id}")
     public ResOneDto getOne(@PathVariable Long id) {

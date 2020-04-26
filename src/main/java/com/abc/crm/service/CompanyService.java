@@ -5,6 +5,7 @@ import com.abc.crm.controller.dto.res.CompanyResDto;
 import com.abc.crm.dao.ClientDao;
 import com.abc.crm.dao.CompanyDao;
 import com.abc.crm.service.bo.CompanyBo;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,11 @@ import java.util.Optional;
 
 @Log4j2
 @Service
+@AllArgsConstructor
 public class CompanyService {
 
     private final CompanyDao companyDao;
     private final ClientDao clientDao;
-
-    public CompanyService(
-            CompanyDao companyDao,
-            ClientDao clientDao) {
-        this.companyDao = companyDao;
-        this.clientDao = clientDao;
-    }
 
     public Optional<CompanyResDto> getOne(Long id) {
         return companyDao.getOne(id)

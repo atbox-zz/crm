@@ -4,23 +4,18 @@ import com.abc.crm.controller.dto.req.ClientReqDto;
 import com.abc.crm.controller.dto.res.ResOneDto;
 import com.abc.crm.service.ClientService;
 import com.abc.crm.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/client")
+@AllArgsConstructor
 public class ClientController {
 
     private final UserService userService;
     private final ClientService clientService;
-
-    public ClientController(
-            UserService userService,
-            ClientService clientService) {
-        this.userService = userService;
-        this.clientService = clientService;
-    }
 
     @GetMapping("/view/{id}")
     public ResOneDto getOne(@PathVariable Long id) {

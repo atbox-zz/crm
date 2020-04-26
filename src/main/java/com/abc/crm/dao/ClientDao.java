@@ -3,6 +3,7 @@ package com.abc.crm.dao;
 import com.abc.crm.service.bo.ClientBo;
 import com.abc.crm.entity.Client;
 import com.abc.crm.repo.ClientRepo;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,13 +11,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class ClientDao {
 
     private final ClientRepo clientRepo;
-
-    public ClientDao(ClientRepo clientRepo) {
-        this.clientRepo = clientRepo;
-    }
 
     public Optional<ClientBo> getOne(Long id) {
         return clientRepo.findById(id)
