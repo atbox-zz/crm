@@ -27,7 +27,7 @@ public class CompanyService {
     }
 
     public Optional<Long> addOne(CompanyReqDto companyReqDto, String username) {
-        CompanyBo companyBo = CompanyBo.builder()
+        var companyBo = CompanyBo.builder()
                 .name(companyReqDto.getName())
                 .address(companyReqDto.getAddress())
                 .createdBy(username)
@@ -38,7 +38,7 @@ public class CompanyService {
     }
 
     public Optional<Long> updateOne(CompanyReqDto companyReqDto, String username) {
-        CompanyBo companyBo = CompanyBo.builder()
+        var companyBo = CompanyBo.builder()
                 .id(companyReqDto.getId())
                 .name(companyReqDto.getName())
                 .address(companyReqDto.getAddress())

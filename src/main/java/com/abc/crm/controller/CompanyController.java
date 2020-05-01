@@ -24,7 +24,7 @@ public class CompanyController {
 
     @PostMapping("/add")
     public ResOneDto addOne(@RequestBody CompanyReqDto companyReqDto) {
-        String username = userService.getCurrentUsername();
+        var username = userService.getCurrentUsername();
         return companyService.addOne(companyReqDto, username)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.fail());
@@ -32,7 +32,7 @@ public class CompanyController {
 
     @PatchMapping("/update")
     public ResOneDto updateOne(@RequestBody CompanyReqDto companyReqDto) {
-        String username = userService.getCurrentUsername();
+        var username = userService.getCurrentUsername();
         return companyService.updateOne(companyReqDto, username)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.fail());
@@ -40,7 +40,7 @@ public class CompanyController {
 
     @DeleteMapping("/delete/{id}")
     public ResOneDto deleteOne(@PathVariable Long id) {
-        boolean success = companyService.deleteOne(id);
+        var success = companyService.deleteOne(id);
         if (success) {
             return ResOneDto.success();
         } else {

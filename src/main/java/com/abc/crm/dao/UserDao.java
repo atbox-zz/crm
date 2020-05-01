@@ -17,7 +17,7 @@ public class UserDao {
 
     @PostConstruct
     public void init(){
-        List<User> userList = List.of(
+        var userList = List.of(
                 User.builder().username("superuser")
                         .password("123")
                         .role("SUPERUSER").build(),

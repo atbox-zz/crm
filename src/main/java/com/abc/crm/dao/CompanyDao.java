@@ -20,7 +20,7 @@ public class CompanyDao {
     }
 
     public Optional<Long> addOne(CompanyBo companyBo) {
-        Company company = Company.valueOf(companyBo);
+        var company = Company.valueOf(companyBo);
         company = companyRepo.save(company);
         return Optional.ofNullable(company.getId());
     }
