@@ -8,7 +8,7 @@ public enum CodeMessage {
     FAIL("0001", "FAIL"),
     ERROR("9000", "ERROR");
 
-    private CodeMessage(String code, String message) {
+    CodeMessage(String code, String message) {
         this.code = code;
         this.message = message;
     }

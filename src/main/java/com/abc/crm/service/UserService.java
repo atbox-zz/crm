@@ -16,7 +16,7 @@ public class UserService implements UserDetailsService {
     private final UserDao userDao;
 
     public String getCurrentUsername() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             return ((UserDetails)principal).getUsername();
         } else {
@@ -26,11 +26,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails userDetails = userDao.getByUsername(username)
+        return userDao.getByUsername(username)
                 .map(e -> User.withUsername(e.getUsername())
                 .password("{noop}" + e.getPassword())
                 .roles(e.getRole())
                 .build()).orElse(null);
-        return userDetails;
     }
 }

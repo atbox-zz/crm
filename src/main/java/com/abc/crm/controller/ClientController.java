@@ -26,7 +26,7 @@ public class ClientController {
 
     @PostMapping("/add")
     public ResOneDto addOne(@RequestBody ClientReqDto clientReqDto) {
-        String username = userService.getCurrentUsername();
+        var username = userService.getCurrentUsername();
         return clientService.addOne(clientReqDto, username)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.fail());
@@ -34,14 +34,14 @@ public class ClientController {
 
     @PostMapping("/add/many")
     public ResOneDto addMany(@RequestBody List<ClientReqDto> clientReqDtoList) {
-        String username = userService.getCurrentUsername();
-        List<Long> idList = clientService.addMany(clientReqDtoList, username);
+        var username = userService.getCurrentUsername();
+        var idList = clientService.addMany(clientReqDtoList, username);
         return ResOneDto.success(idList);
     }
 
     @PatchMapping("/update")
     public ResOneDto updateOne(@RequestBody ClientReqDto clientReqDto) {
-        String username = userService.getCurrentUsername();
+        var username = userService.getCurrentUsername();
         return clientService.updateOne(clientReqDto, username)
                 .map(ResOneDto::success)
                 .orElse(ResOneDto.fail());
@@ -49,7 +49,7 @@ public class ClientController {
 
     @DeleteMapping("/delete/{id}")
     public ResOneDto deleteOne(@PathVariable Long id) {
-        boolean success = clientService.deleteOne(id);
+        var success = clientService.deleteOne(id);
         if (success) {
             return ResOneDto.success();
         } else {

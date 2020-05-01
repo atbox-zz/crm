@@ -28,13 +28,13 @@ public class ClientDao {
     }
 
     public Optional<Long> addOne(ClientBo clientBo) {
-        Client client = Client.valueOf(clientBo);
+        var client = Client.valueOf(clientBo);
         client = clientRepo.save(client);
         return Optional.ofNullable(client.getId());
     }
 
     public List<Long> addMany(List<ClientBo> clientBoList) {
-        List<Client> clientList = clientBoList.stream()
+        var clientList = clientBoList.stream()
                 .map(Client::valueOf)
                 .collect(Collectors.toList());
 

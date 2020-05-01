@@ -35,7 +35,7 @@ public class ClientService {
             return Optional.empty();
         }
 
-        ClientBo clientBo = ClientBo.builder()
+        var clientBo = ClientBo.builder()
                 .companyId(clientReqDto.getCompanyId())
                 .name(clientReqDto.getName())
                 .email(clientReqDto.getEmail())
@@ -54,7 +54,7 @@ public class ClientService {
     @Transactional
     public List<Long> addMany(List<ClientReqDto> clientReqDtoList, String username) {
 
-        Timestamp currentTimestamp = Timestamp.from(Instant.now());
+        var currentTimestamp = Timestamp.from(Instant.now());
         List<ClientBo> clientBoList = clientReqDtoList.stream()
                 .map(e -> ClientBo.builder()
                         .companyId(e.getCompanyId())
@@ -74,7 +74,7 @@ public class ClientService {
             return Optional.empty();
         }
 
-        ClientBo clientBo = ClientBo.builder()
+        var clientBo = ClientBo.builder()
                 .id(clientReqDto.getId())
                 .companyId(clientReqDto.getCompanyId())
                 .name(clientReqDto.getName())
